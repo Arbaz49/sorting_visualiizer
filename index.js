@@ -1,6 +1,6 @@
 
 
-var inp_as=document.getElementById('a_size'),array_size=100;
+var inp_as=document.getElementById('a_size'),array_size=inp_as.value;
 var inp_gen=document.getElementById("a_generate");
 var inp_aspeed=document.getElementById("a_speed");
 
@@ -20,27 +20,26 @@ cont.style="flex-direction:row";
 //Array generation and updation.
 window.onload=generate_array();
 inp_gen.addEventListener("click",update_array_size);
+inp_as.addEventListener("input",update_array_size);
 
 function generate_array()
 {
     cont.innerHTML="";
 
-    for(var i=0;i<100;i++)
+    for(var i=0;i<array_size;i++)
     {
-        // div_sizes[i]=Math.floor(Math.random() * 0.7*(inp_as.max - inp_as.min) ) + 10;
-        // Math.floor(Math.random() * 100)
-        div_sizes[i]= Math.floor(Math.random() * 99);
-
+        div_sizes[i]=Math.floor(Math.random() * 0.5*(inp_as.max - inp_as.min) ) + 10;
         divs[i]=document.createElement("div");
         cont.appendChild(divs[i]);
         margin_size=0.1;
-        divs[i].style=" margin:0% " + margin_size + "%; background-color:blue; width:" + (100/100-(2*margin_size)) + "%; height:" + (div_sizes[i]) + "%;";
+        divs[i].style=" margin:0% " + margin_size + "%; background-color:blue; width:" + (100/array_size-(2*margin_size)) + "%; height:" + (div_sizes[i]) + "%;";
     }
 }
 
+
 function update_array_size()
 {
-    array_size=100;
+    array_size=inp_as.value;
     generate_array();
 }
 

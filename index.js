@@ -60,21 +60,12 @@ function div_update(cont,height,color)
 
 
 
-
-
-
-
 function Bubble()
 {
     //Setting Time complexities
     document.getElementById("Time_Worst").innerText="O(N^2)";
     document.getElementById("Time_Average").innerText="Θ(N^2)";
     document.getElementById("Time_Best").innerText="Ω(N)";
-
-    //Setting Space complexity
-    // document.getElementById("Space_Worst").innerText="O(1)";
-
-    // c_delay=0;
 
     for(var i=0;i<array_size-1;i++)
     {
@@ -90,7 +81,6 @@ function Bubble()
                 var temp=div_sizes[j];
                 div_sizes[j]=div_sizes[j+1];
                 div_sizes[j+1]=temp;
-                // swap(div_sizes[j+1],div_sizes[j]);
 
                 div_update(divs[j],div_sizes[j], "yellow");//Height update
                 div_update(divs[j+1],div_sizes[j+1], "yellow");//Height update
@@ -111,9 +101,6 @@ function Selection_sort()
     document.getElementById("Time_Worst").innerText="O(N^2)";
     document.getElementById("Time_Average").innerText="Θ(N^2)";
     document.getElementById("Time_Best").innerText="Ω(N^2)";
-
-    //Setting Space complexity
-    // document.getElementById("Space_Worst").innerText="O(1)";
 
     c_delay=0;
 
@@ -156,7 +143,6 @@ function Selection_sort()
     }
     div_update(divs[i],div_sizes[i],"aqua");//Color update
 
-    // enable_buttons();
 }
 
 
@@ -167,9 +153,6 @@ function Insertion()
     document.getElementById("Time_Worst").innerText="O(N^2)";
     document.getElementById("Time_Average").innerText="Θ(N^2)";
     document.getElementById("Time_Best").innerText="Ω(N)";
-
-    //Setting Space complexity
-    // document.getElementById("Space_Worst").innerText="O(1)";
 
     c_delay=0;
 
@@ -209,7 +192,6 @@ function Insertion()
     }
     div_update(divs[j-1],div_sizes[j-1],"aqua");//Color update
 
-    // enable_buttons();
 }
 
 
@@ -220,8 +202,6 @@ function Merge()
     document.getElementById("Time_Average").innerText="Θ(N log N)";
     document.getElementById("Time_Best").innerText="Ω(N log N)";
 
-    //Setting Space complexity
-    // document.getElementById("Space_Worst").innerText="O(N)";
     merge_partition(0,array_size-1);
 
 }
@@ -277,11 +257,37 @@ function merge_partition(start,end)
     }
 }
 
-
-
 // running algorithms on button click
 
-btn.addEventListener("click", Bubble);
-select.addEventListener("click",Selection_sort);
-insert.addEventListener("click",Insertion);
-merge.addEventListener("click",Merge);
+btn.addEventListener("click",()=>{
+    inp_as.disabled=true;
+    inp_gen.disabled=true;
+    select.disabled=true;
+    insert.disabled=true;
+    merge.disabled=true;
+    Bubble();
+} );
+select.addEventListener("click",()=>{
+    inp_as.disabled=true;
+    inp_gen.disabled=true;
+    btn.disabled=true;
+    insert.disabled=true;
+    merge.disabled=true;
+    Selection_sort();
+} );
+insert.addEventListener("click",()=>{
+    inp_as.disabled=true;
+    inp_gen.disabled=true;
+    btn.disabled=true;
+    select.disabled=true;
+    merge.disabled=true;
+    Insertion();
+} );
+merge.addEventListener("click",()=>{
+ inp_as.disabled=true;
+ inp_gen.disabled=true;
+    btn.disabled=true;
+    select.disabled=true;
+    insert.disabled=true;
+    Merge();
+} );
